@@ -63,12 +63,12 @@ public class CalcularServlet extends HttpServlet {
 			String body = request.getReader().readLine();
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(body);
-			
-			String op = obj.get("operation").toString();
 			Float value = null;
-			//System.out.println(obj.get("number1").toString());
-			//System.out.println(obj.get("number2").toString());
-			System.out.println(obj.get("operation").toString()); //lol
+			
+			System.out.println(obj.get("number1").toString());
+			System.out.println(obj.get("number2").toString());
+			System.out.println(obj.get("operation").toString());
+			String op = obj.get("operation").toString();
 			
 			switch(op) {
 				case "+":
@@ -80,11 +80,19 @@ public class CalcularServlet extends HttpServlet {
 				case "X":
 					value = this.Multiplicar(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
 					break;
-				case "÷":
-					value = this.Dividir(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
+				case "Ã·":
+					if(Float.parseFloat(obj.get("number2").toString()) != 0){
+						value = this.Dividir(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
+					}else{
+						value = 0F
+					}
 					break;
 				case "%":
-					value = this.Porc(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
+					if(Float.parseFloat(obj.get("number2").toString()) != null){
+						value = this.Porc(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
+					}else{
+						value = this.Porc(Float.parseFloat(obj.get("number1").toString()), 1F);
+					}
 					break;
 				default: System.out.println("INVALID OPERATION >:c"); break;
 			}
