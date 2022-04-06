@@ -84,7 +84,7 @@ public class CalcularServlet extends HttpServlet {
 					if(Float.parseFloat(obj.get("number2").toString()) != 0){
 						value = this.Dividir(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
 					}else{
-						value = 0F
+						value = 0F;
 					}
 					break;
 				case "%":
