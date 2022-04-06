@@ -88,7 +88,7 @@ public class CalcularServlet extends HttpServlet {
 					}
 					break;
 				case "%":
-					if(Float.parseFloat(obj.get("number2").toString()) != null){
+					if(!(obj.get("number2").toString() == null)){
 						value = this.Porc(Float.parseFloat(obj.get("number1").toString()), Float.parseFloat(obj.get("number2").toString()));
 					}else{
 						value = this.Porc(Float.parseFloat(obj.get("number1").toString()), 1F);
